@@ -11,5 +11,6 @@ const userCtrl = require('../controllers/user')
 
 router.post('/signup', userCtrl.signup)
 
+
 //Ici ont export le Router
 module.exports = router;

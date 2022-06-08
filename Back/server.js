@@ -1,5 +1,6 @@
 const express = require('express'); //On appel le framework express
-require('dotenv').config({ path: './config/.env' }) //Ici on précise qu'ont vont utiliser la variable d'environnement
+const dotenv = require("dotenv")
+dotenv.config();
 const http = require('http');
 const app = require('./app'); //Quand on utilise app alors ont fait appel a express
 

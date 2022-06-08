@@ -5,8 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 // Import du models user:
-const models = require("../models/user");
-console.log(models.User)
+const models = require('../models')
 
 exports.signup = (req, res) => {
     const username = req.body.username;
@@ -15,20 +14,22 @@ exports.signup = (req, res) => {
     const bio = req.body.bio;
     const admin = req.body.admin;
 
+    if (email == null || username == null || password == null) {
+        return res.status(400).json({ 'error': 'missing parameters' });
+    }
+
     console.log(req.body);
     try {
-        models.findOne({
-            attributes: ["email"],
-            where: {
-                email: email,
-            },
+        models.User.findOne({
+            attributes: ['email'],
+            where: { email: email, },
         })
 
             .then(
                 ((userFound) => {
                     if (!userFound) {
                         bcrypt.hash(password, 10, function (err, bcryptPassword) {
-                            const newUser = models.create({
+                            const newUser = models.User.create({
                                 username: username,
                                 email: email,
                                 password: bcryptPassword,

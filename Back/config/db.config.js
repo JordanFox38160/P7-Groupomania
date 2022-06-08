@@ -23,14 +23,14 @@ connection.connect(function (err) {
   if (err) throw err;
 });
 
-// app.post('/signup', (req, res) => {
+app.post('/signup', (req, res) => {
 
-//   const username = req.body.username
-//   const password = req.body.password
+  const username = req.body.username
+  const password = req.body.password
 
-//   connection.query("INSERT INTO users (username, password) VALUE (?,?)",
-//     [username, password],
-//     (err, result) => {
-//       console.log(err);
-//     })
-// })
+  connection.query("INSERT INTO users (username, password) VALUE (?,?)",
+    [username, password],
+    (err, result) => {
+      console.log(err);
+    })
+})

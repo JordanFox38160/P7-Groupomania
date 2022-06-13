@@ -1,24 +1,23 @@
 // Bcrypt:
-const bcrypt = require("bcrypt");
+let bcrypt = require("bcrypt");
 
 // Jsonwebtoken d'authentification:
-const jwt = require("jsonwebtoken");
+let jwtUtils = require('../utils/jwt.utils')
 
 // Import du models user:
-const models = require('../models')
+let models = require('../models')
 
 exports.signup = (req, res) => {
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = req.body.password;
-    const bio = req.body.bio;
-    const admin = req.body.admin;
+    let username = req.body.username;
+    let email = req.body.email;
+    let password = req.body.password;
+    let bio = req.body.bio;
 
     if (email == null || username == null || password == null) {
         return res.status(400).json({ 'error': 'missing parameters' });
     }
-
     console.log(req.body);
+
     try {
         models.User.findOne({
             attributes: ['email'],
@@ -28,40 +27,65 @@ exports.signup = (req, res) => {
             .then(
                 ((userFound) => {
                     if (!userFound) {
-                        bcrypt.hash(password, 10, function (err, bcryptPassword) {
+                        bcrypt.hash(password, 5, function (err, bcryptPassword) {
                             const newUser = models.User.create({
-                                username: username,
                                 email: email,
+                                username: username,
                                 password: bcryptPassword,
                                 bio: bio,
-                                admin: false,
+                                admin: 0,
                             })
-
-                                .then((newUser) => {
-                                    res.status(201).json({
-                                        userId: newUser.id,
-                                    });
+                                .then((userFound) => {
+                                    return res.status(201).json('Utilisateur crée');
                                 })
-                                .catch((err) => {
-                                    res.status(500).json({
-                                        error: "Impossible d'ajouter un utilisateur",
-                                    });
-                                });
                         });
                     } else {
                         return res.status(409).json({
                             error: "Ce compte existe déjà ",
                         });
                     }
-                }).catch((err) =>
-                    res.status(500).json({
-                        err: err + "Impossible de vérifier l'utilisateur",
-                    })
-                )
-            );
+                }),
+
+            )
+
     } catch (error) {
         res.status(400).json({
             error: error.message,
         });
     }
-};
+}
+
+
+exports.login = (req, res) => {
+
+    let email = req.body.email;
+    let password = req.body.password;
+
+    if (email == null || password == null) {
+        return res.status(400).json({ 'error': 'missing parameters' });
+    }
+    models.User.findOne({
+        where: { email: email, },
+    })
+        .then((userFound) => {
+            if (userFound) {
+                bcrypt.compare(password, userFound.password, (errBcrypt, resBcrypt) => {
+                    if (resBcrypt) {
+                        return res.status(200).json({
+                            'userId': userFound.id,
+                            'token': jwtUtils.generateTokenForUser(userFound)
+                        });
+                    } else {
+                        return res.status(403).json({ "error": "invalid password" });
+                    }
+                })
+
+            } else {
+                return res.status(404).json({ 'error': 'user not existe in DB' })
+            }
+        })
+        .catch((err) => {
+            return res.status(500).json({ 'error': 'unable to verify user' })
+        })
+
+}

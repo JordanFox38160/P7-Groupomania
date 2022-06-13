@@ -1,3 +1,9 @@
+const db = require('./models')
+
+db.sequelize.sync({ force: false }).then(() => {
+    console.log("Drop and re-sync db.");
+});
+
 const userRoutes = require('./routes/user');
 const express = require('express'); //On appel le framework express
 

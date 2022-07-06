@@ -1,6 +1,5 @@
 const UserModel = require('../models/user.model');
 const jwt = require('jsonwebtoken');
-const { inscriptionErrors, connexionErrors } = require('../utils/errros');
 const bcrypt = require('bcrypt')
 require('dotenv').config({ path: './config/.env' })
 

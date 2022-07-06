@@ -23,7 +23,6 @@ module.exports.createPost = async (req, res) => {
         likers: [],
         comments: [],
     });
-    console.log(req.body)
 
     //Ici on incrémente notre data dans notre base de donnée mongoDB
     try {

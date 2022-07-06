@@ -9,7 +9,6 @@ module.exports.getAllUsers = async (req, res) => {
 
 //Service de récupération d'un seul user
 module.exports.usersInfo = (req, res) => {
-    console.log(req.params)
     //On vérifie si l'ID est valide
     if (!ObjectID.isValid(req.params.id))
         //Alors ont renvoi un status 400 en précisant que l'ont ne connais pas l'ID

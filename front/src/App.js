@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Portal from './pages/Portal'
 import Profil from './pages/Profil'
 import Inscription from './pages/Inscription'
-import CreatePage from './pages/CreatePage';
+import CreatePage from './pages/CreatePost';
 import Bio from './pages/Bio'
 
 const App = () => {

@@ -9,6 +9,7 @@
 
 .logo_footer {
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .ul_footer {
@@ -18,8 +19,15 @@
     display: flex;
     gap: 10px;
     flex-direction: column;
+
 }
 
 li {
     list-style: none;
+    margin-bottom: 20px;
+}
+
+.navlink {
+    color: white;
+    font-weight: bold;
 }

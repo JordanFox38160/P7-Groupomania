@@ -9,9 +9,15 @@ const footer = () => {
                 <img src={image} alt="" />
             </div>
             <ul className='ul_footer'>
-                <li>Accueil</li>
-                <li>Portail</li>
-                <li>Deconnexion</li>
+                <NavLink to="/Home" className="navlink">
+                    <li>Accueil</li>
+                </NavLink>
+                <NavLink to="/Portal" className="navlink">
+                    <li>Portail</li>
+                </NavLink>
+                <NavLink to="/Portal" className="navlink">
+                    <li>Deconnexion</li>
+                </NavLink>
             </ul>
         </div>
     );

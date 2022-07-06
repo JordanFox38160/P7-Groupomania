@@ -9,9 +9,7 @@ export default class App extends Component {
         super(props);
         this.state = {
             offset: 0,
-            data: [],
             perPage: 8,
-            currentPage: 0
         };
         this.handlePageClick = this
             .handlePageClick
@@ -22,7 +20,6 @@ export default class App extends Component {
             .then(res => {
 
                 const data = res.data;
-                console.log(data)
                 const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
                 const postData = slice.map(pd => <React.Fragment>
                     <div className='message-container' id={pd.userId}>
@@ -79,66 +76,3 @@ export default class App extends Component {
         )
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const post_container = () => {
-
-//     fetch('http://localhost:5000/user/message')
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json();
-//             }
-//         })
-//         .then(thread => {
-//             console.log(thread)
-
-//             for (const object of thread) {
-//                 const post_main = document.querySelector('.post_main')
-//                 const container = document.createElement('div')
-//                 container.classList.add('container_post')
-
-//                 const username = document.createElement('h4')
-//                 username.classList.add('username')
-//                 const username_data = object.User.username;
-//                 username.innerText = username_data
-
-
-//                 const title_thread = document.createElement('h2')
-//                 title_thread.classList.add('title_post')
-//                 title_thread.innerText = object.title;
-
-//                 const message_thread = document.createElement('h3')
-//                 message_thread.classList.add('content_post')
-//                 message_thread.innerText = object.content;
-
-//                 post_main.appendChild(container)
-//                 container.appendChild(username)
-//                 container.appendChild(title_thread)
-//                 container.appendChild(message_thread)
-//             }
-//         })
-
-
-//     return (
-//         <div className='post_main'>
-//             <div className="post_container">
-//                 <div className="user_info_container">
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default post_container;

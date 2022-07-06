@@ -1,0 +1,148 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo_png {
+    width: 100px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    -webkit-animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes flip-in-hor-bottom {
+    0% {
+        -webkit-transform: rotateX(80deg);
+        transform: rotateX(80deg);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes flip-in-hor-bottom {
+    0% {
+        -webkit-transform: rotateX(80deg);
+        transform: rotateX(80deg);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+        opacity: 1;
+    }
+}
+
+.container_form {
+    display: flex;
+    width: 100%;
+    height: auto;
+    gap: 20px;
+    color: white;
+    flex-direction: column;
+    align-items: center;
+    -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+.container_form h2 {
+    color: white;
+    font-size: 25px;
+}
+
+.champ-texte {
+    width: 350px;
+    border: 3px solid #FD2D01;
+    border-radius: 20px;
+    outline: 0;
+    background-color: rgb(179, 179, 179);
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px;
+}
+
+.bouton_connexion {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    outline: 0;
+    border: 0 none;
+    border-radius: 20px;
+    padding: 15px;
+    background-color: #FD2D01;
+    color: white;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.bouton_connexion:hover {
+    cursor: pointer;
+    background-color: #a71c00;
+}
+
+
+.button_container {
+    display: flex;
+    gap: 50px;
+}
+
+.bouton_connexion:active {
+    box-shadow: 1px 1px 42px 17px rgba(0, 0, 0, 0.15) inset;
+}
+
+@media(max-width: 660px) {
+    .champ-texte {
+        width: 270px;
+    }
+}
+
+.errorsEmail {
+    color: red;
+    font-weight: bold;
+}
+
+.errorsPassword {
+    color: red;
+    font-weight: bold;
+}
+
+.errorsPseudo {
+    color: red;
+    font-weight: bold;
+}

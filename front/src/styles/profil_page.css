@@ -1,0 +1,113 @@
+.container_profil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 70px;
+}
+
+.container_profil_content {
+    width: 75%;
+    display: flex;
+    height: auto;
+    background-color: rgb(26, 26, 26);
+    padding: 2rem;
+    border-radius: 20px;
+    margin-top: 50px;
+    min-width: 240px;
+}
+
+@media(max-width: 415px) {
+    .container_profil_content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.container_profil_image {
+    width: 150px;
+    border-radius: 10px;
+    height: 150px;
+    margin-right: 20px;
+}
+
+.container_profil_image img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.name {
+    margin-top: 0;
+    color: white;
+    text-align: start;
+}
+
+.profil_text {
+    display: flex;
+    flex-direction: column;
+}
+
+.bio {
+    display: flex;
+    flex-direction: column;
+}
+
+.bio h2 {
+    font-size: 15px;
+    margin-top: 0;
+    font-weight: bold;
+    color: white;
+}
+
+.edit_button {
+    width: 130px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: white;
+    background-color: rgb(66, 66, 66);
+}
+
+.bio_input {
+    background-color: rgb(66, 66, 66);
+    border: 2px solid white;
+    width: 350px;
+    padding-bottom: 50px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+    color: white;
+    font-weight: normal;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.container_input_button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.bio_input_button {
+    width: 150px;
+    background-color: rgb(66, 66, 66);
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.username_texte {
+    color: white;
+}

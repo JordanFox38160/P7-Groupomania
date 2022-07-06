@@ -1,0 +1,137 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 150px;
+}
+
+.logo_portal {
+    width: 550px;
+    margin-bottom: 120px;
+    -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes text-focus-in {
+    0% {
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes text-focus-in {
+    0% {
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+.container h1 {
+    color: white;
+}
+
+.container h2 {
+    color: white;
+}
+
+.title {
+    margin-bottom: 50px;
+}
+
+.button_portal {
+    display: flex;
+    gap: 250px;
+}
+
+.container ul {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 0;
+}
+
+.container li {
+    list-style: none;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #FD2D01;
+    border-radius: 20px;
+    padding: 30px;
+    border-bottom: none;
+    -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.container li:hover {
+    cursor: pointer;
+    background-color: #a71c00;
+}
+
+
+@media(max-width: 660px) {
+    .container {
+        flex-direction: column;
+        border-bottom: 5px solid rgb(61, 61, 199);
+    }
+
+    .container ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container li {
+        width: 110px;
+        text-align: center;
+    }
+}
+
+
+.navlink {
+    text-decoration: none;
+}

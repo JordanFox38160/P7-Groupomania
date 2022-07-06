@@ -1,0 +1,86 @@
+.container_post_create {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+textarea {
+    background-color: gray;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    width: 650px;
+    resize: none;
+}
+
+@media (max-width: 768px) {
+    textarea {
+        width: 550px;
+    }
+}
+
+@media (max-width: 600px) {
+    textarea {
+        width: 450px;
+    }
+}
+
+@media (max-width: 480px) {
+    textarea {
+        width: 250px;
+    }
+}
+
+.title_input {
+    height: 30px;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.title_input::placeholder {
+    color: rgb(49, 49, 49);
+}
+
+.contenu_input {
+    padding-bottom: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.contenu_input::placeholder {
+    color: rgb(49, 49, 49);
+}
+
+.container_post_create h1 {
+    font-size: 20px;
+    color: white;
+    margin: 0;
+}
+
+button {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.container_image {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#file {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}

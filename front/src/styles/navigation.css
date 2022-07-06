@@ -1,0 +1,52 @@
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #FD2D01;
+}
+
+img {
+    width: 250px;
+}
+
+.menu_icone {
+    display: flex;
+    flex-direction: row;
+    font-size: 25px;
+    align-items: center;
+    margin: 0;
+    color: #FD2D01;
+    gap: 40px;
+}
+
+.menu_icone h2 {
+    margin: 0;
+}
+
+.username {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.username h1 {
+    margin: 0;
+    color: white;
+    font-weight: normal;
+    font-size: 25px;
+}
+
+.username_texte {
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+@media (max-width: 890px) {
+    .navigation {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+}

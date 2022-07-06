@@ -5,7 +5,6 @@ module.exports = (req, res, next) => {
     try {
         //Ici on crée une variable token pour récupéré le header authorization ou est renseigner notre token
         const token = req.headers.authorization.split(' ')[1]; //<=== Ici on précise [1] pour bien ciblé le token et non le mot "Bearead"
-        console.log(token)
         //Ont utilise jwt.verify(token, 'TOKEN') afin de vérifier notre token pour être sur qu'il correspond a notre token encodé
         const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
         //Ici ont récupére le UserId

@@ -14,22 +14,19 @@ exports.inscription = (req, res, next) => {
             });
             user.save()
                 .then(() => res.status(201).json({ user }))
-                .catch(error => res.status(400).json({ error: 'Adresse Email déjà utilisée' }));
+                .catch(error => res.status(400).json({ error: error }));
         })
         .catch(error => res.status(500).json({ error }))
 };
 
 //Service de connexion
 exports.connexion = (req, res) => {
-    bcrypt.hash(req.body.password, 10)
-        .then(hash => console.log('hash :', hash))
     UserModel.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {
                 //Si aucun utilisateur n'est trouver, on renvoie une erreur 404 et un json avec 'Impossible de se connecter'
                 return res.status(401).json({ error: 'Impossible de se connecter' })
             }
-            console.log(user.password)
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     if (!valid) {

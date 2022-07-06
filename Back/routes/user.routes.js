@@ -10,9 +10,6 @@ router.post("/inscription", authController.inscription);
 //Route pour la connexion
 router.post('/connexion', authController.connexion);
 
-//Route pour la deconnexion
-router.get('/deconnexion', authController.deconnexion);
-
 //Route pour récupéré tout les users
 router.get('/', userController.getAllUsers);
 

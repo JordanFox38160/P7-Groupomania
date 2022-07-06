@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 //Ici on utilise validator pour controler l'email
 const { isEmail } = require('validator');
 
-//ici on importe bcrypt pour crypter le mot de passe
-const bcrypt = require('bcrypt')
-
 const userSchema = new mongoose.Schema(
     {
         pseudo: {

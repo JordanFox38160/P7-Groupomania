@@ -50,9 +50,3 @@ exports.connexion = (req, res) => {
         .catch(error => res.status(500).json({ error }))
 
 };
-
-//Service de deconnexion
-module.exports.deconnexion = (req, res) => {
-    res.cookie('jwt', '', { maxAge: 1 });
-    res.redirect('/');
-}

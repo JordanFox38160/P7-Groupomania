@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
-const multer = require('../middleware/multer-config');
 
 //Route user
 
@@ -27,6 +26,6 @@ router.put('/:id', userController.updateUser);
 router.delete('/:id', userController.deleteUser);
 
 //Ajouter un image
-// router.post('/upload', upload.single('file'), userController.uploadProfil);
+router.post('/upload', upload.single('file'), userController.uploadProfil);
 
 module.exports = router;

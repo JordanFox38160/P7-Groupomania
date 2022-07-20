@@ -4,7 +4,7 @@ const app = express();
 require('dotenv').config({ path: './config/.env' })
 require('./config/db');
 app.use(express.json());
-
+const path = require('path');
 //Cors
 const cors = require('cors');
 const corsOptions = {
@@ -24,6 +24,7 @@ const postRoutes = require('./routes/post.route')
 
 
 //Routes
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
 

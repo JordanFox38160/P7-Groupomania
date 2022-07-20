@@ -1,16 +1,16 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
-import ContainerCreatePost from '../components/ContainerCreatePost';
+import Container_create_Comment from '../components/CreateComment';
 import FooterContainer from '../components/Footer';
 
-const CreatePage = () => {
+const CreateComment = () => {
     return (
         <div>
             <Navigation />
-            <ContainerCreatePost />
+            <Container_create_Comment />
             <FooterContainer />
         </div>
     );
 };
 
-export default CreatePage;
+export default CreateComment;

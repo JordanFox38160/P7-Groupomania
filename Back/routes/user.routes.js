@@ -16,9 +16,6 @@ router.get('/', userController.getAllUsers);
 //Route pour récupéré un user (suivant son id)
 router.get('/:id', userController.usersInfo);
 
-//Route pour mettre a jour un user (bio, image de profil ect...)
-router.put('/:id', userController.updateUser);
-
 //Route pour supprimer un user
 router.delete('/:id', userController.deleteUser);
 

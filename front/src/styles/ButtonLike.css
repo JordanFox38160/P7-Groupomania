@@ -1,0 +1,16 @@
+.button_post_like {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button_like {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.like_icone {
+    width: 50px;
+}

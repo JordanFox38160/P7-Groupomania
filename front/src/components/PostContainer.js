@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate';
-import ButtonCreatePost from './button_post'
+import ButtonOfPost from './ButtonOfPost'
+import ButtonViewComment from './ButtonViewComment'
+
+//REALISER LA PAGINATION EN BACK//
+
 
 //Pagination des post
 export default class App extends Component {
@@ -9,7 +13,7 @@ export default class App extends Component {
         super(props);
         this.state = {
             offset: 0,
-            perPage: 8,
+            perPage: 3,
         };
         this.handlePageClick = this
             .handlePageClick
@@ -18,23 +22,20 @@ export default class App extends Component {
     receivedData() {
         axios.get(`http://localhost:5000/api/post/`, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } })
             .then(res => {
-
                 const data = res.data;
                 const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
                 const postData = slice.map(pd => <React.Fragment>
-                    <div className='message-container' id={pd.userId}>
+                    <div className='message-container' id={pd._id}>
                         <p className='username'>{pd.pseudo}</p>
                         <p className='title'>{pd.title}</p>
                         <p className='message'>{pd.message}</p>
-                        <div className="comment">
-                            <ButtonCreatePost />
-                        </div>
+                        <ButtonOfPost postId={pd._id} />
+                        <ButtonViewComment postIdComment={pd._id} />
                     </div>
                 </React.Fragment>)
 
                 this.setState({
                     pageCount: Math.ceil(data.length / this.state.perPage),
-
                     postData
                 })
             });

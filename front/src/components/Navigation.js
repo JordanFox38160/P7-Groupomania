@@ -12,20 +12,26 @@ const Navigation = () => {
 
     //Ici on parse ce que l'ont a récupéré dans le localstorage pour l'avoir au format JSON
     const userIdParse = JSON.parse(userInfo)
-    console.log(userIdParse)
-
     //Ici on extrait l'ID du JSON
     const getUserId = userIdParse.userId
 
     const getPseudo = userIdParse.pseudo
-    console.log(getPseudo)
 
     Axios.get('http://localhost:5000/api/user/' + getUserId)
         .then(res => {
             const data = res.data
             const pseudoData = data.pseudo
-            console.log(pseudoData)
+            localStorage.setItem('pseudoData', (pseudoData))
+
+            const pseudo = document.querySelector('.pseudo')
+            pseudo.innerText = pseudoData
         })
+
+    const disconnected = () => {
+        const deleteToken = localStorage.removeItem('token');
+        const deleteData = localStorage.removeItem('pseudoData');
+    }
+
     return (
         <div className="navigation">
             <NavLink to="/Home" className="navlink">
@@ -37,14 +43,14 @@ const Navigation = () => {
                 <NavLink to="/Home" className="navlink">
                     <FontAwesomeIcon className='menu_icone' icon={faHouse} />
                 </NavLink>
-                <NavLink to="/Profil/:id" className="navlink">
+                <NavLink to={'/Profil/' + getUserId} className="navlink">
                     <div className="username">
                         <FontAwesomeIcon className='menu_icone' icon={faUser} />
-                        <h1>{getPseudo}</h1>
+                        <h1 className='pseudo'>{getPseudo}</h1>
                     </div>
                 </NavLink>
                 <NavLink to="/Portal" className="navlink">
-                    <FontAwesomeIcon className='menu_icone' icon={faPowerOff} />
+                    <FontAwesomeIcon className='menu_icone' onClick={disconnected} icon={faPowerOff} />
                 </NavLink>
             </div>
         </div>

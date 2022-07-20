@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const mongoosePaginate = require('mongoose-paginate-v2')
+
 const PostSchema = new mongoose.Schema(
     {
         userId: {
@@ -25,9 +27,13 @@ const PostSchema = new mongoose.Schema(
         picture: {
             type: String,
         },
-        likers: {
-            type: [String],
-            required: true,
+        likes: {
+            type: Number,
+            required: false
+        },
+        usersLiked: {
+            type: Array,
+            required: true
         },
         comments: {
             type: [
@@ -45,5 +51,7 @@ const PostSchema = new mongoose.Schema(
         timestamps: true,
     }
 )
+
+PostSchema.plugin(mongoosePaginate)
 
 module.exports = mongoose.model('post', PostSchema);

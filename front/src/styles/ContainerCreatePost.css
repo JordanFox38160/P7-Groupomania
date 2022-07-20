@@ -5,9 +5,20 @@
     align-items: center;
     margin-top: 30px;
     gap: 20px;
+    padding-bottom: 50px;
 }
 
 textarea {
+    background-color: gray;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    width: 650px;
+    resize: none;
+}
+
+.title_input {
     background-color: gray;
     border: none;
     border-radius: 10px;
@@ -21,10 +32,18 @@ textarea {
     textarea {
         width: 550px;
     }
+
+    .title_input {
+        width: 550px;
+    }
 }
 
 @media (max-width: 600px) {
     textarea {
+        width: 450px;
+    }
+
+    .title_input {
         width: 450px;
     }
 }
@@ -33,6 +52,15 @@ textarea {
     textarea {
         width: 250px;
     }
+
+    .title_input {
+        width: 250px;
+    }
+
+    .title_input::placeholder {
+        font-size: 17px;
+    }
+
 }
 
 .title_input {
@@ -63,11 +91,18 @@ textarea {
     margin: 0;
 }
 
-button {
+#send_button {
     color: white;
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
+}
+
+@media (max-width: 350px) {
+    #send_button {
+        width: 170px;
+    }
+
 }
 
 .container_image {

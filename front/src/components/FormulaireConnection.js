@@ -21,6 +21,7 @@ const FormulaireConnexion = () => {
 
         })
             .then((response) => {
+
                 //Set du token dans le storage
                 const token = response.data.token
                 localStorage.setItem('token', token)
@@ -28,12 +29,11 @@ const FormulaireConnexion = () => {
                 //Set de l'id de l'user dans le storage
                 const userId = {
                     userId: response.data.userId,
-                    pseudo: response.data.pseudo
                 }
                 localStorage.setItem('userId', JSON.stringify(userId))
-                if (response.data.errors) {
-                    errorsEmail.innerText = response.data.errors.email;
-                    errorsPassword.innerText = response.data.errors.password;
+                if (response.data.error) {
+                    errorsEmail.innerText = response.data.error.email;
+                    errorsPassword.innerText = response.data.error.password;
                 } else {
                     window.location = "/Home";
                 }

@@ -1,9 +1,8 @@
-const postModel = require('../models/post.model');
 const PostModel = require('../models/post.model');
 const UserModel = require('../models/user.model');
 const ObjectID = require('mongoose').Types.ObjectId;
 
-//Ici on gére la récupération d'un post
+//Ici on gére la récupération de TOUT les post
 module.exports.readPost = (req, res) => {
     PostModel.find((err, docs) => {
         //Si il n'y pas d'erreur, alors on renvoie la data (docs)
@@ -11,17 +10,45 @@ module.exports.readPost = (req, res) => {
         else console.log('Error to get data' + err);
         //Ici on utilise.sort pour pouvoir afficher le dernier message en 1er
     }).sort({ createdAt: -1 });
+
+};
+
+//Service de récupération des post d'un seul user
+module.exports.readOnePost = (req, res) => {
+    //On vérifie si l'ID est valide
+    if (!ObjectID.isValid(req.params.id))
+        //Alors ont renvoi un status 400 en précisant que l'ont ne connais pas l'ID
+        return res.status(400).send('ID unknown :' + req.params.id)
+    PostModel.findById(req.params.id, (err, docs) => {
+        if (!err) res.send(docs);
+        else console.log('ID Unknow: ' + err)
+        //Ici on précise que l'ont ne souhaite pas renvoyer le password
+    })
+};
+
+//Service de récupération des post d'un seul user
+module.exports.readAllPostUser = (req, res) => {
+    //On vérifie si l'ID est valide
+    if (!ObjectID.isValid(req.params.id))
+        //Alors ont renvoi un status 400 en précisant que l'ont ne connais pas l'ID
+        return res.status(400).send('ID unknown :' + req.params.id)
+    PostModel.findById(req.params.id, (err, docs) => {
+        if (!err) res.send(docs);
+        else console.log('ID Unknow: ' + err)
+        //Ici on précise que l'ont ne souhaite pas renvoyer le password
+    })
 };
 
 //Ici on gére la création d'un post
 module.exports.createPost = async (req, res) => {
-    const newPost = new postModel({
+    const newPost = new PostModel({
         userId: req.body.userId,
         pseudo: req.body.pseudo,
         message: req.body.message,
         title: req.body.title,
         likers: [],
         comments: [],
+        // picutre: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
     });
 
     //Ici on incrémente notre data dans notre base de donnée mongoDB
@@ -41,6 +68,7 @@ module.exports.updatePost = (req, res) => {
         return res.status(400).send('ID unknown :' + req.params.id);
 
     const updatedRecord = {
+        title: req.body.title,
         message: req.body.message
     }
 
@@ -67,74 +95,6 @@ module.exports.deletePost = (req, res) => {
         else console.log("Delete error" + err);
     });
 };
-
-//Ici l'ajout d'un like
-module.exports.likePost = async (req, res) => {
-    //On vérifie si l'ID est valide
-    if (!ObjectID.isValid(req.params.id))
-        //Alors ont renvoi un status 400 en précisant que l'ont ne connais pas l'ID
-        return res.status(400).send('ID unknown :' + req.params.id);
-
-    try {
-        await PostModel.findByIdAndUpdate(
-            req.params.id,
-            {
-                $addToSet: { likers: req.body.id }
-            },
-            { new: true },
-            (err, docs) => {
-                if (err) res.status(400).send(err);
-            }
-        );
-        await UserModel.findByIdAndUpdate(
-            req.body.id,
-            {
-                $addToSet: { likes: req.params.id }
-            },
-            { new: true },
-            (err, docs) => {
-                if (!err) res.send(docs);
-                else return res.status(400).send(err);
-            }
-        )
-    } catch (err) {
-        return res.status(400).send(err);
-    }
-}
-
-//Ici on gère suppresion d'un like
-module.exports.unlikePost = async (req, res) => {
-    //On vérifie si l'ID est valide
-    if (!ObjectID.isValid(req.params.id))
-        //Alors ont renvoi un status 400 en précisant que l'ont ne connais pas l'ID
-        return res.status(400).send('ID unknown :' + req.params.id);
-
-    try {
-        await PostModel.findByIdAndUpdate(
-            req.params.id,
-            {
-                $pull: { likers: req.body.id }
-            },
-            { new: true },
-            (err, docs) => {
-                if (err) res.status(400).send(err);
-            }
-        );
-        await UserModel.findByIdAndUpdate(
-            req.body.id,
-            {
-                $pull: { likes: req.params.id }
-            },
-            { new: true },
-            (err, docs) => {
-                if (!err) res.send(docs);
-                else return res.status(400).send(err);
-            }
-        )
-    } catch (err) {
-        return res.status(400).send(err);
-    }
-}
 
 //Ici on gère l'ajout d'un commentaire
 module.exports.commentPost = (req, res) => {

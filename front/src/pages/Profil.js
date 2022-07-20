@@ -1,13 +1,13 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
-import Profil_page from '../components/Profil_page';
+import ProfilPage from '../components/ProfilPage';
 import FooterContainer from '../components/Footer'
 
 const Profil = () => {
     return (
         <div className='accueil'>
             <Navigation />
-            <Profil_page />
+            <ProfilPage />
             <FooterContainer />
         </div>
     );

@@ -19,6 +19,7 @@
     "fs-temp": "^2.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.6",
+    "mongoose-paginate-v2": "^1.7.0",
     "multer": "^1.4.4",
     "nodemon": "^2.0.18",
     "react-scripts": "^5.0.1",

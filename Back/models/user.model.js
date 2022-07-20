@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema(
         imageUrl: {
             type: String,
             required: false,
+        },
+        admin: {
+            type: Boolean,
+            default: false
         }
     },
     {

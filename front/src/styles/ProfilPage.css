@@ -1,3 +1,10 @@
+.profil_main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
 .container_profil {
     display: flex;
     justify-content: center;
@@ -5,18 +12,20 @@
     height: auto;
     margin-left: 20px;
     margin-right: 20px;
-    margin-bottom: 70px;
+    margin-bottom: 20px;
 }
 
 .container_profil_content {
-    width: 75%;
+    width: 100%;
     display: flex;
     height: auto;
+    justify-content: center;
     background-color: rgb(26, 26, 26);
     padding: 2rem;
     border-radius: 20px;
     margin-top: 50px;
     min-width: 240px;
+    align-items: center;
 }
 
 @media(max-width: 415px) {
@@ -30,7 +39,7 @@
     width: 150px;
     border-radius: 10px;
     height: 150px;
-    margin-right: 20px;
+    margin-bottom: 10px;
 }
 
 .container_profil_image img {
@@ -54,6 +63,7 @@
 .bio {
     display: flex;
     flex-direction: column;
+    text-align: start;
 }
 
 .bio h2 {
@@ -109,5 +119,21 @@
 }
 
 .username_texte {
+    color: white;
+}
+
+.pseudo_profil {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.profil_user {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.you_post h1 {
     color: white;
 }

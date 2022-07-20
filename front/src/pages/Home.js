@@ -1,6 +1,6 @@
 import React from 'react';
 import Navigation from '../components/Navigation'
-import Post_page from '../components/Post_container'
+import PostContainer from '../components/PostContainer'
 import ButtonCreatePost from '../components/ButtonCreatePost'
 import FooterContainer from '../components/Footer'
 
@@ -9,7 +9,7 @@ const Home = () => {
         <div className='accueil'>
             <Navigation />
             <ButtonCreatePost />
-            <Post_page />
+            <PostContainer />
             <FooterContainer />
         </div>
     );

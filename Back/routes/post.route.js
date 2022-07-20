@@ -3,8 +3,11 @@ const postController = require('../controllers/postController');
 const auth = require('../middleware/auth')
 const multer = require('../middleware/multer-config');
 
-//Route pour lire un post
+//Route pour lire tout les post
 router.get('/', postController.readPost);
+
+//Route pour récupéré un post
+router.get('/:id', postController.readOnePost);
 
 //Route pour crée un post
 router.post('/', auth, multer, postController.createPost);
@@ -14,12 +17,6 @@ router.put('/:id', auth, multer, postController.updatePost);
 
 //Route pour supprimer un post
 router.delete('/:id', auth, postController.deletePost);
-
-//Route pour liker un post
-router.patch('/like-post/:id', auth, postController.likePost);
-
-//Route pour unlike un post
-router.patch('/unlike-post/:id', auth, postController.unlikePost);
 
 //Commentaires
 //Route pour commenter un post

@@ -4,13 +4,25 @@ import Axios from 'axios';
 const Bio_container = () => {
     const [bio, setBio] = useState("");
 
+    // Ici on récupère l'userId dans le localstorage
+    const userInfo = localStorage.getItem('userId')
+    const pseudoData = localStorage.getItem('pseudoData')
+    //Ici on parse ce que l'ont a récupéré dans le localstorage pour l'avoir au format JSON
+    const userIdParse = JSON.parse(userInfo)
+    //Ici on extrait l'ID du JSON
+    const getUserId = userIdParse.userId
+
     const fetchBio = () => {
-        Axios.put('http://localhost:5000/user/me', {
+        Axios.put('http://localhost:5000/api/user/' + getUserId, {
             bio: bio
         })
+            .then((res) => {
+                window.location = "/Profil/" + getUserId;
+            })
             .catch((err) => {
                 console.log(err)
             })
+
     };
 
     return (

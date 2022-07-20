@@ -34,6 +34,7 @@ exports.connexion = (req, res) => {
                     }
                     res.status(200).json({
                         userId: user._id,
+                        isAdmin: user.admin,
                         token: jwt.sign(
                             { userId: user._id },
                             process.env.TOKEN_SECRET,

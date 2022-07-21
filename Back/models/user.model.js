@@ -32,10 +32,6 @@ const userSchema = new mongoose.Schema(
         likes: {
             type: [String]
         },
-        imageUrl: {
-            type: String,
-            required: false,
-        },
         admin: {
             type: Boolean,
             default: false

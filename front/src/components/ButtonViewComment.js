@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 
-
 const buttonViewComment = (props) => {
+    console.log(props)
     return (
         <section className="button_container">
             <NavLink to={'/CommentContainer/' + props.postIdComment} className="navlink">

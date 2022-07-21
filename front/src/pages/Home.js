@@ -6,12 +6,12 @@ import FooterContainer from '../components/Footer'
 
 const Home = () => {
     return (
-        <div className='accueil'>
+        <main className='accueil'>
             <Navigation />
             <ButtonCreatePost />
             <PostContainer />
             <FooterContainer />
-        </div>
+        </main>
     );
 };
 

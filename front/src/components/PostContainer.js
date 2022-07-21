@@ -58,7 +58,7 @@ export default class App extends Component {
     }
     render() {
         return (
-            <div className='pagination_post'>
+            <section className='pagination_post'>
                 {this.state.postData}
                 <ReactPaginate
                     previousLabel={"Précédent"}
@@ -72,7 +72,7 @@ export default class App extends Component {
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"} />
-            </div>
+            </section>
 
         )
     }

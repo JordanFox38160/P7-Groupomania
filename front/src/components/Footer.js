@@ -8,7 +8,7 @@ const footer = () => {
         const deleteData = localStorage.removeItem('pseudoData');
     }
     return (
-        <div className="footer_container">
+        <footer className="footer_container">
             <div className="logo_footer">
                 <img src={image} alt="" />
             </div>
@@ -23,7 +23,7 @@ const footer = () => {
                     <li>Deconnexion</li>
                 </NavLink>
             </ul>
-        </div >
+        </footer >
     );
 };
 

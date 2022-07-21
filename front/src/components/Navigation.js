@@ -33,13 +33,13 @@ const Navigation = () => {
     }
 
     return (
-        <div className="navigation">
+        <header className="navigation">
             <NavLink to="/Home" className="navlink">
                 <div className="logo">
                     <img src={image} alt="" />
                 </div>
             </NavLink>
-            <div className="menu_icone">
+            <nav className="menu_icone">
                 <NavLink to="/Home" className="navlink">
                     <FontAwesomeIcon className='menu_icone' icon={faHouse} />
                 </NavLink>
@@ -52,8 +52,8 @@ const Navigation = () => {
                 <NavLink to="/Portal" className="navlink">
                     <FontAwesomeIcon className='menu_icone' onClick={disconnected} icon={faPowerOff} />
                 </NavLink>
-            </div>
-        </div>
+            </nav>
+        </header>
     );
 };
 

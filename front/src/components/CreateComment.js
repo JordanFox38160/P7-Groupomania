@@ -16,10 +16,8 @@ const Make_post = () => {
     const getUserId = userIdParse.userId
 
     const params = useParams();
-    console.log(params)
 
     const postId = params.postId
-    console.log(postId)
 
     const [message, setmessage] = useState("");
 

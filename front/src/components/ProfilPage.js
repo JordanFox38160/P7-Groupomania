@@ -1,7 +1,6 @@
 import React from 'react';
 import profil_image from '../assets/img/images/profil_image/01.jpg'
 import axios from 'axios';
-import { NavLink, } from 'react-router-dom'
 
 const ProfilPage = () => {
     // Ici on récupère l'userId dans le localstorage
@@ -9,10 +8,9 @@ const ProfilPage = () => {
 
     //Ici on parse ce que l'ont a récupéré dans le localstorage pour l'avoir au format JSON
     const userIdParse = JSON.parse(userInfo)
+
     //Ici on extrait l'ID du JSON
     const getUserId = userIdParse.userId
-
-    const getPseudo = userIdParse.pseudo
 
     //Récupération des information
     axios.get(`http://localhost:5000/api/user/` + getUserId)

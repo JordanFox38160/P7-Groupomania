@@ -9,9 +9,9 @@ const footer = () => {
     }
     return (
         <footer className="footer_container">
-            <div className="logo_footer">
+            <section className="logo_footer">
                 <img src={image} alt="" />
-            </div>
+            </section>
             <ul className='ul_footer'>
                 <NavLink to="/Home" className="navlink">
                     <li>Accueil</li>

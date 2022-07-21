@@ -33,8 +33,8 @@ const Profil_page = () => {
             )
     }
     return (
-        <div className='profil_main'>
-            <div className="container_profil">
+        <main className='profil_main'>
+            <section className="container_profil">
                 <div className="container_profil_content">
                     <div className="profil_user">
                         <h1 className="pseudo_profil"></h1>
@@ -42,8 +42,8 @@ const Profil_page = () => {
                         <button onClick={deleteUser}>Supprimer le compte</button>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     )
 
 };

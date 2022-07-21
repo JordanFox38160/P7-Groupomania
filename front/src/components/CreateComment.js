@@ -36,7 +36,7 @@ const Make_post = () => {
     };
 
     return (
-        <div className="container_post_create">
+        <section className="container_post_create">
             <h1>Votre réponse :</h1>
             <textarea className='contenu_input'
                 maxLength={250}
@@ -46,7 +46,7 @@ const Make_post = () => {
                     setmessage(e.target.value);
                 }} />
             <button id='send_button' onClick={posted}>Envoyer !</button>
-        </div>
+        </section>
     );
 };
 

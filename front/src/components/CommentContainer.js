@@ -54,8 +54,8 @@ const CommentContainer = () => {
         })
     return (
         <div>
-            <div className="container_comment" >
-            </div >
+            <section className="container_comment" >
+            </section >
         </div >
     );
 };

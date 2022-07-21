@@ -74,13 +74,13 @@ const delete_fonction = (event) => {
 
 const ButtonCreatePost = (props) => {
     return (
-        <div className="button_post">
+        <section className="button_post">
             <NavLink to={'/CreateComment/' + props.postId} className="navlink">
                 <button onClick={getPostId} id='comment_button'>Commenter</button>
             </NavLink>
             <button onClick={modifyPost} id='modif_button'>Modifier</button>
             <button onClick={delete_fonction} id='delete'>Supprimer</button>
-        </div>
+        </section>
     );
 };
 

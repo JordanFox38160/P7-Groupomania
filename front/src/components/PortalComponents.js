@@ -19,7 +19,7 @@ const storage = () => {
 const PortalComponents = () => {
     storage()
     return (
-        <div className="main">
+        <main className="main">
             <div className="container">
                 <img src={image} className="logo_portal" alt="" />
                 <div className='title'>
@@ -37,7 +37,7 @@ const PortalComponents = () => {
                     </NavLink>
                 </div>
             </div>
-        </div>
+        </main>
     );
 };
 

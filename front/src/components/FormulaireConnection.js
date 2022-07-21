@@ -44,9 +44,9 @@ const FormulaireConnexion = () => {
     };
 
     return (
-        <div className="main">
+        <main className="main">
             <img src={image} className="logo_png" alt="" />
-            <div className="container_form">
+            <section className="container_form">
                 <div className="user">
                     <h2>Email :</h2>
                     <input className="champ-texte"
@@ -73,8 +73,8 @@ const FormulaireConnexion = () => {
                         </div>
                     </NavLink>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     );
 };
 

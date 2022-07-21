@@ -36,7 +36,7 @@ const Make_post = () => {
     };
 
     return (
-        <div className="container_post_create">
+        <section className="container_post_create">
 
             <h1>Votre titre :</h1>
             <textarea className='title_input '
@@ -57,7 +57,7 @@ const Make_post = () => {
                 }} />
 
             <button onClick={posted}>Envoyer !</button>
-        </div>
+        </section>
     );
 };
 

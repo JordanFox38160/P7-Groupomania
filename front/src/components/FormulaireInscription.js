@@ -38,9 +38,9 @@ const FormulaireInscription = () => {
     };
 
     return (
-        <div className='main'>
+        <main className='main'>
             <img src={image} className="logo_png" alt="" />
-            <div className="container_form">
+            <section className="container_form">
                 <div className="user">
                     <h2>Nom d'utilisateur :</h2>
                     <input
@@ -79,8 +79,8 @@ const FormulaireInscription = () => {
                         </div>
                     </NavLink>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     );
 }
 

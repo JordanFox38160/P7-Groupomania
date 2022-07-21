@@ -52,7 +52,7 @@ const ModifyContainer = () => {
     };
 
     return (
-        <div className="container_post_create">
+        <section className="container_post_create">
             <h1>Votre titre :</h1>
             <input className='title_input '
                 maxLength={150}
@@ -74,7 +74,7 @@ const ModifyContainer = () => {
                 }} />
 
             <button onClick={posted}>Envoyer !</button>
-        </div>
+        </section>
     );
 };
 

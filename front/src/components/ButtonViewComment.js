@@ -9,11 +9,11 @@ const getPostIdComment = (event) => {
 
 const buttonViewComment = (props) => {
     return (
-        <div className="button_container">
+        <section className="button_container">
             <NavLink to={'/CommentContainer/' + props.postIdComment} className="navlink">
                 <button onClick={getPostIdComment}>Voir les commentaires</button>
             </NavLink>
-        </div>
+        </section>
     );
 };
 

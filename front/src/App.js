@@ -6,7 +6,6 @@ import Portal from './pages/Portal'
 import Profil from './pages/Profil'
 import Inscription from './pages/Inscription'
 import CreatePage from './pages/CreatePost';
-import Bio from './pages/Bio'
 import CreateComment from './pages/CreateComment'
 import CommentContainer from './pages/Comment';
 import ModifyPost from './pages/ModifyPost'
@@ -20,7 +19,6 @@ const App = () => {
         <Route path="/CreateComment/:postId" element={<CreateComment />} />
         <Route path="/CommentContainer/:postId" element={<CommentContainer />} />
         <Route path="/ModifyPost/:postId" element={<ModifyPost />} />
-        <Route path="/bio" element={<Bio />} />
         <Route path="/portal" element={<Portal />} />
         <Route path="/profil/:id" element={<Profil />} />
         <Route path="/inscription" element={<Inscription />} /> {/* Ici si il y a rien après le / dans l'url, ont renvoie vers la page Home */}

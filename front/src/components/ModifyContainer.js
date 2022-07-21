@@ -18,7 +18,6 @@ const ModifyContainer = () => {
                 const data = response.data;
                 setTitle(() => data.title)
                 setmessage(() => data.message)
-                console.log(response)
             })
     }, [])
 
@@ -35,8 +34,6 @@ const ModifyContainer = () => {
     //Ici on extrait l'ID du JSON
     const getUserId = userIdParse.userId
     const posted = (req, res) => {
-        console.log(title.length)
-        console.log(message.length)
         Axios.put('http://localhost:5000/api/post/' + postId,
             {
                 message: message,

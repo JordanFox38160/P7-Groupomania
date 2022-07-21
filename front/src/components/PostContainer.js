@@ -4,9 +4,6 @@ import ReactPaginate from 'react-paginate';
 import ButtonOfPost from './ButtonOfPost'
 import ButtonViewComment from './ButtonViewComment'
 
-//REALISER LA PAGINATION EN BACK//
-
-
 //Pagination des post
 export default class App extends Component {
     constructor(props) {

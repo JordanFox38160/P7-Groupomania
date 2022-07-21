@@ -19,7 +19,6 @@ const MakePost = () => {
     const [title, setTitle] = useState("");
 
     const posted = (req, res) => {
-        console.log(req.file)
         Axios.post('http://localhost:5000/api/post/',
             {
                 message: message,

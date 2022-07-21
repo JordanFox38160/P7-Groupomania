@@ -23,7 +23,6 @@ const FormulaireInscription = () => {
             email: email,
             password: password,
         }).then((response) => {
-            console.log(response)
             if (response.data.errors) {
                 errorsEmail.innerText = response.data.errors.email;
                 errorsPseudo.innerText = response.data.errors.pseudo;

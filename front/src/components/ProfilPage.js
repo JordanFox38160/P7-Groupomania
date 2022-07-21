@@ -3,7 +3,7 @@ import profil_image from '../assets/img/images/profil_image/01.jpg'
 import axios from 'axios';
 import { NavLink, } from 'react-router-dom'
 
-const Profil_page = () => {
+const ProfilPage = () => {
     // Ici on récupère l'userId dans le localstorage
     const userInfo = localStorage.getItem('userId')
 
@@ -48,4 +48,4 @@ const Profil_page = () => {
 
 };
 
-export default Profil_page;
+export default ProfilPage;

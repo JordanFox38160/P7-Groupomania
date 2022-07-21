@@ -5,7 +5,7 @@ const getToken = {
     headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
 };
 
-const Make_post = () => {
+const MakePost = () => {
     // Ici on récupère l'userId dans le localstorage
     const userInfo = localStorage.getItem('userId')
     const pseudoData = localStorage.getItem('pseudoData')
@@ -61,4 +61,4 @@ const Make_post = () => {
     );
 };
 
-export default Make_post;
+export default MakePost;

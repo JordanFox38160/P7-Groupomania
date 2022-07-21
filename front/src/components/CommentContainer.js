@@ -9,8 +9,6 @@ const CommentContainer = () => {
     Axios.get('http://localhost:5000/api/post/' + postId)
         .then(res => {
             const data = res.data
-            console.log(data)
-            const dataPseudo = data.pseudo
 
             if (data) {
                 const section = document.querySelector('.container_comment');
@@ -36,7 +34,6 @@ const CommentContainer = () => {
             if (dataComment) {
                 for (let object in dataComment) {
                     const comments = dataComment[object];
-                    console.log(comments)
 
                     const section = document.querySelector('.container_comment');
                     const article = document.createElement('article');

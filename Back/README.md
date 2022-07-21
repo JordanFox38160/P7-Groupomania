@@ -23,3 +23,11 @@ Dans le fichier server.js, ligne 11, remplacer la ligne "process.env.CLIENT_URL"
 
 Dans le fichier auth.js, ligne 10, remplacer 'process.env.TOKEN_SECRET', par un token secret.
 Dans le fichier authController.js, ligne 43, remplacer 'process.env.TOKEN_SECRET', par un token secret.
+
+# ********** UTILISER LE COMPTE ADMIN **********
+
+Pour utiliser un compte admin, veuillez utiliser le compte suivant :
+Nom de compte : Admin@gmail.com
+Mot de passe : 123456
+
+Ou alors crée un nouveau compte et passer "Admin : False" en "Admin : True" sur la table de l'user crée dans MongoDbCompase

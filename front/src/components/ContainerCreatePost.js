@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useSelector, userReducer } from 'react';
 import Axios from 'axios';
-
+let i = 0;
 const getToken = {
     headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
 };
 
 const MakePost = () => {
+    console.log(++i);
     // Ici on récupère l'userId dans le localstorage
     const userInfo = localStorage.getItem('userId')
     const pseudoData = localStorage.getItem('pseudoData')
@@ -17,26 +18,34 @@ const MakePost = () => {
 
     const [message, setmessage] = useState("");
     const [title, setTitle] = useState("");
+    const [file, setFile] = useState();
+    const [postPicture, setPostPicture] = useState()
 
-    const posted = (req, res) => {
-        Axios.post('http://localhost:5000/api/post/',
-            {
-                message: message,
-                title: title,
-                userId: getUserId,
-                pseudo: pseudoData,
-                // picture: req.file.image,
-            }, getToken,
-            {
-            }).then((res) => {
-                window.location = "/Home";
-            });
+    const handlePicture = (e) => {
+        setPostPicture(URL.createObjectURL(e.target.files[0]));
+        setFile(e.target.files[0]);
+    }
 
-    };
+    const handlePost = () => {
+        if (message || postPicture) {
+            const postData = new FormData();
+            postData.append('message', message);
+            postData.append('title', title);
+            postData.append('userId', getUserId);
+            postData.append('pseudo', pseudoData);
+            postData.append('file', file);
 
+            Axios.post('http://localhost:5000/api/post/', postData, getToken)
+                .then((res) => {
+                    window.location = "/Home";
+                });
+        } else {
+            alert("Veuillez entrer un message")
+        }
+    }
+    console.log(file)
     return (
         <section className="container_post_create">
-
             <h1>Votre titre :</h1>
             <textarea className='title_input '
                 maxLength={54}
@@ -54,8 +63,9 @@ const MakePost = () => {
                 onChange={(e) => {
                     setmessage(e.target.value);
                 }} />
-
-            <button onClick={posted}>Envoyer !</button>
+            <input type="file" id="file-upload" name="file" accept='.jpg, .jpeg, .png' onChange={(e) => handlePicture(e)} />
+            <img src={postPicture} alt="" />
+            <button onClick={handlePost}>Envoyer !</button>
         </section>
     );
 };

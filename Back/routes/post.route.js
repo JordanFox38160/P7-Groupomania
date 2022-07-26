@@ -15,6 +15,9 @@ router.post('/', auth, multer, postController.createPost);
 //Route pour mettre a jour un post
 router.put('/:id', auth, multer, postController.updatePost);
 
+//Route pour mettre un like a un post
+router.post('/likes/:id', auth, multer, postController.likePost);
+
 //Route pour supprimer un post
 router.delete('/:id', auth, postController.deletePost);
 

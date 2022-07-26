@@ -2,6 +2,7 @@ const PostModel = require('../models/post.model');
 const UserModel = require('../models/user.model');
 const ObjectID = require('mongoose').Types.ObjectId;
 
+
 //Ici on gére la récupération de TOUT les post
 module.exports.readPost = (req, res) => {
     PostModel.find((err, docs) => {
@@ -41,15 +42,20 @@ module.exports.readAllPostUser = (req, res) => {
 
 //Ici on gére la création d'un post
 module.exports.createPost = async (req, res) => {
+    let fileName;
+    fileName = req.body.userId + ".jpg";
+
     const newPost = new PostModel({
         userId: req.body.userId,
         pseudo: req.body.pseudo,
         message: req.body.message,
         title: req.body.title,
         likers: [],
+        usersLiked: [],
         comments: [],
-        // picutre: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        picture: req.file !== null ? "./images/" + fileName : "",
     });
+    console.log(req.file)
 
     //Ici on incrémente notre data dans notre base de donnée mongoDB
     try {
@@ -174,3 +180,40 @@ module.exports.deleteCommentPost = (req, res) => {
         return res.status(400).send(err);
     }
 };
+
+//Gestion des likes
+exports.likePost = (req, res) => {
+    console.log(req.body.userId)
+    PostModel.findOne({ _id: req.params.id })
+        .then((post) => {
+            let options = {
+                $inc: {},
+                _id: req.params.id
+            };
+            const hasLiked = post.usersLiked.find(userId => userId == req.body.userId);
+
+            //Ici ont gère l'ajout de like
+            switch (req.body.like) {
+                case 1:
+                    //Si l'utilisateur a déja liker, alors on renvoie une erreur.
+                    if (hasLiked) {
+                        //Ici on enleve le like dans la priopriété $inc de notre objet options
+                        options.$inc.likes = -1;
+                        options.$pull = { usersLiked: req.body.userId }
+                    } else {
+                        //Ici on ajoute le like dans la priopriété $inc de notre objet options
+                        options.$inc.likes = 1;
+                        options.$push = { usersLiked: req.body.userId }
+                    }
+
+                    break;
+                default:
+                    //generer erreur car valeur non traitée
+                    res.status(400).json({ message: 'Unsupported like parameter value' });
+            }
+
+            PostModel.updateOne({ _id: req.params.id }, options)
+                .then(() => { res.status(201).json({ message: 'Avis pris en compte' }); })
+                .catch((error) => { res.status(400).json({ error: error }); });
+        });
+}

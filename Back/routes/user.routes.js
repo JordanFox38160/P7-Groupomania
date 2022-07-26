@@ -2,10 +2,12 @@ const router = require('express').Router();
 const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
 
-//Route user
+//Ici on importe le middleware password
+const password = require('../middleware/password');
 
+//Route user
 //Route pour l'inscription
-router.post("/inscription", authController.inscription);
+router.post("/inscription", password, authController.inscription);
 
 //Route pour la connexion
 router.post('/connexion', authController.connexion);

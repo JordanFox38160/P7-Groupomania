@@ -3,6 +3,8 @@ import axios from 'axios'
 import ReactPaginate from 'react-paginate';
 import ButtonOfPost from './ButtonOfPost'
 import ButtonViewComment from './ButtonViewComment'
+import ButtonLikePost from './ButtonLikePost'
+import ImageInPost from './ImageInPost'
 
 //Pagination des post
 export default class App extends Component {
@@ -21,16 +23,18 @@ export default class App extends Component {
             .then(res => {
                 const data = res.data;
                 const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
-                const postData = slice.map(pd => <React.Fragment>
-                    <div className='message-container' id={pd._id}>
-                        <p className='username'>{pd.pseudo}</p>
-                        <p className='title'>{pd.title}</p>
-                        <p className='message'>{pd.message}</p>
-                        <ButtonOfPost postId={pd._id} />
-                        <ButtonViewComment postIdComment={pd._id} />
-                    </div>
-                </React.Fragment>)
-
+                const postData = slice.map(pd =>
+                    <React.Fragment>
+                        <div className='message-container' id={pd._id}>
+                            <ButtonLikePost postIdComment={pd._id} usersLikes={pd.usersLiked} />
+                            <p className='username'>{pd.pseudo}</p>
+                            <p className='title'>{pd.title}</p>
+                            <p className='message'>{pd.message}</p>
+                            <ImageInPost postId={pd._id} picture={pd.picture} />
+                            <ButtonOfPost postId={pd._id} />
+                            <ButtonViewComment postIdComment={pd._id} />
+                        </div>
+                    </React.Fragment>)
                 this.setState({
                     pageCount: Math.ceil(data.length / this.state.perPage),
                     postData

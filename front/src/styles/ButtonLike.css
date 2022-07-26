@@ -14,3 +14,9 @@
 .like_icone {
     width: 50px;
 }
+
+.likeNumber {
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 20px;
+}

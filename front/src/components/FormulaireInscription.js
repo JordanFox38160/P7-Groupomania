@@ -17,24 +17,19 @@ const FormulaireInscription = () => {
         e.preventDefault();
         const errorsPseudo = document.getElementsByClassName('errorsPseudo')
         const errorsEmail = document.getElementsByClassName('errorsEmail')
-        const errorsPassword = document.getElementsByClassName('errorsPassword')
+        const errorsPassword = document.querySelector('.errorsPassword')
         Axios.post('http://localhost:5000/api/user/inscription', {
             pseudo: pseudo,
             email: email,
             password: password,
-        }).then((response) => {
-            if (response.data.errors) {
-                errorsEmail.innerText = response.data.errors.email;
-                errorsPseudo.innerText = response.data.errors.pseudo;
-                errorsPassword.innerText = response.data.errors.password;
-            } else {
-                window.location = "/connection";
-            }
+        }).then((res) => {
+            window.location = "/connection";
         })
             .catch((err) => {
-                console.log(err);
-            });
-    };
+                console.log(err.response.data.error)
+                errorsPassword.innerHTML = err.response.data.error;
+            })
+    }
 
     return (
         <main className='main'>

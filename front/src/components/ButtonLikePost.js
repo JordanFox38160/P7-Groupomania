@@ -8,7 +8,6 @@ const getToken = {
 };
 
 const like = (event, props) => {
-    console.log(props);
     // Ici on récupère l'userId dans le localstorage
     const userInfo = localStorage.getItem('userId')
     //Ici on parse ce que l'ont a récupéré dans le localstorage pour l'avoir au format JSON
@@ -29,7 +28,7 @@ const like = (event, props) => {
 const buttonLikePost = (props) => {
     return (
         <main className='like_button'>
-            <button>
+            <button className='button_like'>
                 <FontAwesomeIcon onClick={(event) => { like(event, props) }} className='like_icone' icon={faThumbsUp} />
             </button>
             <p className='likeNumber'>{props.usersLikes.length}</p>

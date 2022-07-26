@@ -1,4 +1,4 @@
-import React, { useState, useSelector, userReducer } from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
 let i = 0;
 const getToken = {
@@ -6,7 +6,6 @@ const getToken = {
 };
 
 const MakePost = () => {
-    console.log(++i);
     // Ici on récupère l'userId dans le localstorage
     const userInfo = localStorage.getItem('userId')
     const pseudoData = localStorage.getItem('pseudoData')

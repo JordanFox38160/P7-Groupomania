@@ -69,7 +69,6 @@ const ModifyContainer = () => {
                 onChange={(e) => {
                     setmessage(e.target.value);
                 }} />
-
             <button onClick={posted}>Envoyer !</button>
         </section>
     );

@@ -53,7 +53,7 @@ module.exports.createPost = async (req, res) => {
         likers: [],
         usersLiked: [],
         comments: [],
-        picture: req.file !== null ? "./images/" + fileName : "",
+        picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
     console.log(req.file)
 
@@ -67,11 +67,12 @@ module.exports.createPost = async (req, res) => {
 }
 
 //Ici on gére la mise a jour d'un post
-module.exports.updatePost = (req, res) => {
+module.exports.updatePost = async (req, res) => {
     //On vérifie si l'ID est valide
     if (!ObjectID.isValid(req.params.id))
         //Alors ont renvoi un status 400 en précisant que l'ont ne connais pas l'ID
         return res.status(400).send('ID unknown :' + req.params.id);
+
 
     const updatedRecord = {
         title: req.body.title,
@@ -87,6 +88,7 @@ module.exports.updatePost = (req, res) => {
             else console.log("Update error:" + err)
         }
     )
+
 }
 
 //Ici on gére la suppresion d'un post

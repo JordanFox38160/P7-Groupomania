@@ -13,7 +13,7 @@ import './styles/Footer.css'
 import './styles/BioContainer.css'
 import './styles/CommentContainer.css'
 import './styles/ButtonLike.css'
-
+import './styles/ImagePost.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root')); //Ici on dit que toute notre application on la passe a root
 root.render( //Ici on dit de faire un rendu de APP

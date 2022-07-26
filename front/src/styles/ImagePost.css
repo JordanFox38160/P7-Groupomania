@@ -4,8 +4,22 @@
     margin-bottom: 20px;
 }
 
+.img_div_comment {
+    border-radius: 20px;
+    width: 450px;
+    margin-bottom: 20px;
+}
+
 @media (max-width: 1024px) {
     .img_div img {
+        border-radius: 20px;
+        width: 100%;
+
+    }
+}
+
+@media (max-width: 1024px) {
+    .img_div_comment {
         border-radius: 20px;
         width: 100%;
 

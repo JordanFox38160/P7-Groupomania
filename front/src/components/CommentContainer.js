@@ -24,10 +24,16 @@ const CommentContainer = () => {
                 message.innerText = data.message
                 message.classList.add('message')
 
+                const imgContainer = document.createElement('img')
+                imgContainer.classList.add('img_div_comment')
+                imgContainer.src = data.picture
+
+
                 section.appendChild(postContainer)
                 postContainer.appendChild(pseudoPost)
                 postContainer.appendChild(title)
                 postContainer.appendChild(message)
+                postContainer.appendChild(imgContainer)
             }
 
             const dataComment = data.comments
@@ -52,6 +58,7 @@ const CommentContainer = () => {
     return (
         <div>
             <section className="container_comment" >
+
             </section >
         </div >
     );

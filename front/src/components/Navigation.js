@@ -36,7 +36,7 @@ const Navigation = () => {
         <header className="navigation">
             <NavLink to="/Home" className="navlink">
                 <div className="logo">
-                    <img src={image} alt="" />
+                    <img className='logo_image' src={image} alt="" />
                 </div>
             </NavLink>
             <nav className="menu_icone">

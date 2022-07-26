@@ -1,6 +1,4 @@
 import React from 'react';
-import Axios from 'axios'
-
 
 const LoadImageInComponent = (props) => {
     return (

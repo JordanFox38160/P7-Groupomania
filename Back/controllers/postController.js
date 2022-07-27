@@ -1,7 +1,7 @@
 const PostModel = require('../models/post.model');
 const UserModel = require('../models/user.model');
 const ObjectID = require('mongoose').Types.ObjectId;
-
+const fs = require('fs');
 
 //Ici on gére la récupération de TOUT les post
 module.exports.readPost = (req, res) => {
@@ -98,11 +98,18 @@ module.exports.deletePost = (req, res) => {
         //Alors ont renvoi un status 400 en précisant que l'ont ne connais pas l'ID
         return res.status(400).send('ID unknown :' + req.params.id);
 
-    PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
-        if (!err) res.send(docs)
-        else console.log("Delete error" + err);
-    });
-};
+    PostModel.findOne({ _id: req.params.id })
+        .then(post => {
+            //Ici on supprime l'image de la sauce
+            const filename = post.picture.split('/images/')[1];
+            fs.unlink(`images/${filename}`, () => {
+                PostModel.deleteOne({ _id: req.params.id })
+                    .then(() => res.status(200).json({ message: 'Objet supprimé !' }))
+                    .catch(error => res.status(400).json({ error }));
+            });
+        })
+        .catch(error => res.status(500).json({ error }));
+}
 
 //Ici on gère l'ajout d'un commentaire
 module.exports.commentPost = (req, res) => {
@@ -119,56 +126,6 @@ module.exports.commentPost = (req, res) => {
                         commenterPseudo: req.body.commenterPseudo,
                         text: req.body.text,
                         timestamp: new Date().getTime(),
-                    },
-                },
-            },
-            { new: true },
-            (err, docs) => {
-                if (!err) return res.send(docs);
-                else return res.status(400).send(err);
-            }
-        );
-    } catch (err) {
-        return res.status(400).send(err);
-    }
-};
-
-//Ici on gère la modification d'un commentaire
-module.exports.editCommentPost = (req, res) => {
-    if (!ObjectID.isValid(req.params.id))
-        return res.status(400).send("ID unknown : " + req.params.id);
-
-    try {
-        return PostModel.findById(req.params.id, (err, docs) => {
-            const theComment = docs.comments.find((comment) =>
-                comment._id.equals(req.body.commentId)
-            );
-
-            if (!theComment) return res.status(404).send("Comment not found");
-            theComment.text = req.body.text;
-
-            return docs.save((err) => {
-                if (!err) return res.status(200).send(docs);
-                return res.status(500).send(err);
-            });
-        });
-    } catch (err) {
-        return res.status(400).send(err);
-    }
-};
-
-//Ici on gère la suppression d'un commentaire
-module.exports.deleteCommentPost = (req, res) => {
-    if (!ObjectID.isValid(req.params.id))
-        return res.status(400).send("ID unknown : " + req.params.id);
-
-    try {
-        return PostModel.findByIdAndUpdate(
-            req.params.id,
-            {
-                $pull: {
-                    comments: {
-                        _id: req.body.commentId,
                     },
                 },
             },

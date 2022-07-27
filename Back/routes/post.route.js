@@ -22,13 +22,5 @@ router.post('/likes/:id', auth, multer, postController.likePost);
 router.delete('/:id', auth, postController.deletePost);
 
 //Commentaires
-//Route pour commenter un post
-router.patch('/comment-post/:id', auth, postController.commentPost);
-
-//Route pour editer un post
-router.patch('/edit-comment-post/:id', auth, postController.editCommentPost);
-
-//Route pour supprimer un post
-router.patch('/delete-comment-post/:id', auth, postController.deleteCommentPost);
 
 module.exports = router;

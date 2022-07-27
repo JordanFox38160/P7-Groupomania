@@ -63,7 +63,7 @@ const MakePost = () => {
                     setmessage(e.target.value);
                 }} />
             <input type="file" id="file-upload" name="file" accept='.jpg, .jpeg, .png' onChange={(e) => handlePicture(e)} />
-            <img src={postPicture} alt="" />
+            <img className='picture-upload' src={postPicture} alt="" />
             <button onClick={handlePost}>Envoyer !</button>
         </section>
     );

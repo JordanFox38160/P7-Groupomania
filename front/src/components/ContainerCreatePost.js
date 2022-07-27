@@ -42,7 +42,6 @@ const MakePost = () => {
             alert("Veuillez entrer un message")
         }
     }
-    console.log(file)
     return (
         <section className="container_post_create">
             <h1>Votre titre :</h1>
@@ -64,7 +63,7 @@ const MakePost = () => {
                 }} />
             <input type="file" id="file-upload" name="file" accept='.jpg, .jpeg, .png' onChange={(e) => handlePicture(e)} />
             <img className='picture-upload' src={postPicture} alt="" />
-            <button onClick={handlePost}>Envoyer !</button>
+            <button className='submit_button' onClick={handlePost}>Envoyer !</button>
         </section>
     );
 };

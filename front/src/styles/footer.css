@@ -12,6 +12,13 @@
     margin-bottom: 20px;
 }
 
+@media(max-width: 768px) {
+    .logo_footer img {
+        width: 70%;
+    }
+
+}
+
 .ul_footer {
     padding: 0;
     margin: 0;

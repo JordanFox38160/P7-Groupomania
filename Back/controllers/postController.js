@@ -160,7 +160,6 @@ module.exports.commentPost = (req, res) => {
 
 //Gestion des likes
 exports.likePost = (req, res) => {
-    console.log(req.body.userId)
     PostModel.findOne({ _id: req.params.id })
         .then((post) => {
             let options = {

@@ -96,6 +96,7 @@ textarea {
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
+    width: 150px;
 }
 
 @media (max-width: 350px) {
@@ -121,5 +122,9 @@ textarea {
 }
 
 .picture-upload {
-    width: 350px;
+    width: 250px;
+}
+
+.submit_button {
+    width: 250px;
 }

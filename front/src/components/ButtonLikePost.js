@@ -28,8 +28,8 @@ const like = (event, props) => {
 const buttonLikePost = (props) => {
     return (
         <main className='like_button'>
-            <button className='button_like'>
-                <FontAwesomeIcon onClick={(event) => { like(event, props) }} className='like_icone' icon={faThumbsUp} />
+            <button className='button_like' onClick={(event) => { like(event, props) }}>
+                <FontAwesomeIcon icon={faThumbsUp} />
             </button>
             <p className='likeNumber'>{props.usersLikes.length}</p>
         </main>

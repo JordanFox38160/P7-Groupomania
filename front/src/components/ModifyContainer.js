@@ -11,6 +11,13 @@ const ModifyContainer = () => {
 
     const [message, setmessage] = useState("");
     const [title, setTitle] = useState("");
+    const [file, setFile] = useState();
+    const [postPicture, setPostPicture] = useState()
+
+    const handlePicture = (e) => {
+        setPostPicture(URL.createObjectURL(e.target.files[0]));
+        setFile(e.target.files[0]);
+    }
 
     useEffect(() => {
         Axios.get('http://localhost:5000/api/post/' + postId)
@@ -33,20 +40,23 @@ const ModifyContainer = () => {
 
     //Ici on extrait l'ID du JSON
     const getUserId = userIdParse.userId
-    const posted = (req, res) => {
-        Axios.put('http://localhost:5000/api/post/' + postId,
-            {
-                message: message,
-                title: title,
-                userId: getUserId,
-                pseudo: pseudoData,
-            }, getToken,
-            {
-            }).then((res) => {
-                window.location = "/Home";
-            });
+    const handlePost = () => {
+        if (message || postPicture) {
+            const postData = new FormData();
+            postData.append('message', message);
+            postData.append('title', title);
+            postData.append('userId', getUserId);
+            postData.append('pseudo', pseudoData);
+            postData.append('file', file);
 
-    };
+            Axios.put('http://localhost:5000/api/post/' + postId, postData, getToken)
+                .then((res) => {
+                    window.location = "/Home";
+                });
+        } else {
+            alert("Veuillez entrer un message")
+        }
+    }
 
     return (
         <section className="container_post_create">
@@ -69,7 +79,9 @@ const ModifyContainer = () => {
                 onChange={(e) => {
                     setmessage(e.target.value);
                 }} />
-            <button onClick={posted}>Envoyer !</button>
+            <input type="file" id="file-upload" name="file" accept='.jpg, .jpeg, .png' onChange={(e) => handlePicture(e)} />
+            <img className='picture-upload' src={postPicture} alt="" />
+            <button onClick={handlePost}>Envoyer !</button>
         </section>
     );
 };

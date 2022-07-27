@@ -73,21 +73,38 @@ module.exports.updatePost = async (req, res) => {
         //Alors ont renvoi un status 400 en précisant que l'ont ne connais pas l'ID
         return res.status(400).send('ID unknown :' + req.params.id);
 
+    const imgUploaded = Boolean(req.file)
+    let initialPost;
+    const postObject = req.file ?
+        {
+            picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        } : { ...req.body };
+
+    if (imgUploaded) {
+        initialPost = await PostModel.findOne({ _id: req.params.id });
+    }
 
     const updatedRecord = {
         title: req.body.title,
-        message: req.body.message
+        message: req.body.message,
+        picture: postObject,
     }
 
-    PostModel.findByIdAndUpdate(
-        req.params.id,
-        { $set: updatedRecord },
-        { new: true },
-        (err, docs) => {
-            if (!err) res.send(docs);
-            else console.log("Update error:" + err)
+    PostModel.findByIdAndUpdate({ _id: req.params.id }, { ...postObject, _id: req.params.id })
+        .then(() => {
+            if (imgUploaded) {
+                const filename = initialPost.picture.split('/images/')[1];
+                fs.unlink(`images/${filename}`, () => { });
+            }
+            req.params.id,
+                { $set: updatedRecord },
+                { new: true },
+                (err, docs) => {
+                    if (!err) res.send(docs);
+                    else console.log("Update error:" + err)
+                }
         }
-    )
+        )
 
 }
 

@@ -103,6 +103,7 @@ module.exports.updatePost = async (req, res) => {
                     if (!err) res.send(docs);
                     else console.log("Update error:" + err)
                 }
+            res.status(200).json({ message: 'Objet modifié !' })
         }
         )
 

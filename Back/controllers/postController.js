@@ -53,7 +53,7 @@ module.exports.createPost = async (req, res) => {
         likers: [],
         usersLiked: [],
         comments: [],
-        picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        picture: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null
     });
     console.log(req.file)
 
@@ -73,39 +73,32 @@ module.exports.updatePost = async (req, res) => {
         //Alors ont renvoi un status 400 en précisant que l'ont ne connais pas l'ID
         return res.status(400).send('ID unknown :' + req.params.id);
 
-    const imgUploaded = Boolean(req.file)
-    let initialPost;
-    const postObject = req.file ?
-        {
-            picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-        } : { ...req.body };
+    if (req.auth.isAdmin || post.userId == req.auth.userId) {
+        const imgUploaded = Boolean(req.file)
+        let initialPost;
+        const postObject = req.file ?
+            {
+                ...req.body,
+                picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+            } : { ...req.body };
 
-    if (imgUploaded) {
-        initialPost = await PostModel.findOne({ _id: req.params.id });
-    }
-
-    const updatedRecord = {
-        title: req.body.title,
-        message: req.body.message,
-        picture: postObject,
-    }
-
-    PostModel.findByIdAndUpdate({ _id: req.params.id }, { ...postObject, _id: req.params.id })
-        .then(() => {
-            if (imgUploaded) {
-                const filename = initialPost.picture.split('/images/')[1];
-                fs.unlink(`images/${filename}`, () => { });
-            }
-            req.params.id,
-                { $set: updatedRecord },
-                { new: true },
-                (err, docs) => {
-                    if (!err) res.send(docs);
-                    else console.log("Update error:" + err)
-                }
-            res.status(200).json({ message: 'Objet modifié !' })
+        if (imgUploaded) {
+            initialPost = await PostModel.findOne({ _id: req.params.id });
         }
-        )
+
+        PostModel.findByIdAndUpdate({ _id: req.params.id }, { ...postObject })
+            .then(() => {
+                if (imgUploaded) {
+                    const filename = initialPost.picture.split('/images/')[1];
+                    fs.unlink(`images/${filename}`, () => { });
+
+                }
+                res.status(200).json({ message: 'Objet modifié !' })
+            }
+            )
+    } else {
+        res.status(400).json({ message: 'Impossible de modifier !' })
+    }
 
 }
 
@@ -115,16 +108,17 @@ module.exports.deletePost = (req, res) => {
     if (!ObjectID.isValid(req.params.id))
         //Alors ont renvoi un status 400 en précisant que l'ont ne connais pas l'ID
         return res.status(400).send('ID unknown :' + req.params.id);
-
     PostModel.findOne({ _id: req.params.id })
         .then(post => {
             //Ici on supprime l'image de la sauce
-            const filename = post.picture.split('/images/')[1];
-            fs.unlink(`images/${filename}`, () => {
+            if (req.auth.isAdmin || post.userId == req.auth.userId) {
                 PostModel.deleteOne({ _id: req.params.id })
                     .then(() => res.status(200).json({ message: 'Objet supprimé !' }))
                     .catch(error => res.status(400).json({ error }));
-            });
+                const filename = post.picture.split('/images/')[1];
+                fs.unlink(`images/${filename}`, () => {
+                })
+            }
         })
         .catch(error => res.status(500).json({ error }));
 }

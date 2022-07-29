@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
-let i = 0;
 const getToken = {
     headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
 };
@@ -26,7 +25,7 @@ const MakePost = () => {
     }
 
     const handlePost = () => {
-        if (message || postPicture) {
+        if (message && title || postPicture) {
             const postData = new FormData();
             postData.append('message', message);
             postData.append('title', title);

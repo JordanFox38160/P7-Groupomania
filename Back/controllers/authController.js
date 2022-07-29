@@ -36,11 +36,17 @@ exports.connexion = (req, res) => {
                         userId: user._id,
                         isAdmin: user.admin,
                         token: jwt.sign(
-                            { userId: user._id },
+                            {
+                                userId: user._id,
+                                //Ajout de IsAdmin afin d'ajouter d'administrateur
+                                isAdmin: user.admin
+                            },
                             process.env.TOKEN_SECRET,
                             { expiresIn: '24H' }
                         )
-                    });
+                    }
+                    );
+
                 })
                 .catch(error => res.status(500).json({ error }))
         })

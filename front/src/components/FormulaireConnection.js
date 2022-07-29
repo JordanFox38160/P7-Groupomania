@@ -22,9 +22,15 @@ const FormulaireConnexion = () => {
         })
             .then((response) => {
 
+                console.log(response)
                 //Set du token dans le storage
                 const token = response.data.token
                 localStorage.setItem('token', token)
+
+                //Set dans le localstorage si l'utilisateur est admin ou non
+                const IsAdmin = +response.data.isAdmin //On force une conversion nombre pour ne pas nregistrer une string true/false dans le localStorage
+
+                localStorage.setItem('admin', IsAdmin)
 
                 //Set de l'id de l'user dans le storage
                 const userId = {

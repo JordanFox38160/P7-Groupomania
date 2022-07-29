@@ -30,6 +30,7 @@ const Navigation = () => {
     const disconnected = () => {
         const deleteToken = localStorage.removeItem('token');
         const deleteData = localStorage.removeItem('pseudoData');
+        const deleteAdmin = localStorage.removeItem('admin');
     }
 
     return (

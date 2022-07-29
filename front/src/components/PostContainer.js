@@ -6,6 +6,7 @@ import ButtonViewComment from './ButtonViewComment'
 import ButtonLikePost from './ButtonLikePost'
 import ImageInPost from './ImageInPost'
 
+
 //Pagination des post
 export default class App extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ export default class App extends Component {
         this.state = {
             offset: 0,
             perPage: 3,
+            isConnected: false,
         };
         this.handlePageClick = this
             .handlePageClick
@@ -25,13 +27,13 @@ export default class App extends Component {
                 const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
                 const postData = slice.map(pd =>
                     <React.Fragment>
-                        <div className='message-container' id={pd._id}>
+                        <div className='message-container' id={pd._id} >
                             <ButtonLikePost postIdComment={pd._id} usersLikes={pd.usersLiked} />
                             <p className='username'>{pd.pseudo}</p>
                             <p className='title'>{pd.title}</p>
                             <p className='message'>{pd.message}</p>
                             <ImageInPost postId={pd._id} picture={pd.picture} />
-                            <ButtonOfPost postId={pd._id} />
+                            <ButtonOfPost postId={pd._id} userId={pd.userId} />
                             <ButtonViewComment postIdComment={pd._id} />
                         </div>
                     </React.Fragment>)
@@ -55,6 +57,7 @@ export default class App extends Component {
     };
 
     componentDidMount() {
+        this.setState({ isConnected: localStorage.getItem('token') != null })
         this.receivedData()
     }
     render() {

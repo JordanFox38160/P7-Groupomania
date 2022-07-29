@@ -9,11 +9,16 @@ module.exports = (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
         //Ici ont récupére le UserId
         const userId = decodedToken.userId;
+        //Ici ont récupére le IsAdmin
+        const isAdmin = decodedToken.isAdmin;
+
+        req.auth = { userId, isAdmin }
         //Ici on vérifie si le UserID de la requête correspond bien avec celui du token
         if (req.body.userId && req.body.userId !== userId) {
             //Si cela ne correspond pas, on revois ça :
             throw 'User ID non valable';
         } else {
+            console.log(req.auth)
             //Si le UserID de la requête correspond bien avec celui du token ont peut passer la requête au prochain middleware
             next();
         }
